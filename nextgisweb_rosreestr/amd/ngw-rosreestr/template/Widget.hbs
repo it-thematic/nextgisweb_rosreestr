@@ -1,0 +1,53 @@
+<div data-dojo-type="${baseClass}" data-dojo-attach-point="focusNode"
+     data-ngw-serialize-prefix="${prefix}" class="padding-block">
+    <div data-dojo-type="${baseClass}" data-dojo-attach-point="focusNode"
+        data-ngw-serialize-prefix="${prefix}" class="padding-block">
+
+        <div data-dojo-type="dojox/layout/TableContainer" data-dojo-props="cols:1, labelWidth: 150">
+
+            <div data-dojo-attach-point="wParcelResource"
+                data-dojo-type="ngw-resource/ResourceBox"
+                data-dojo-props="interface: 'IWritableFeatureLayer, dialogTitle: '{{gettext 'Select parcel resource'}}'"
+                data-ngw-serialize="parcel_resource"
+                title="{{gettext 'Parcels'}}" style="width: 100%"></div>
+
+            <div data-dojo-attach-point="wOksPolygonResource"
+                data-dojo-type="ngw-resource/ResourceBox"
+                data-dojo-props="interface: 'IWritableFeatureLayer, dialogTitle: '{{gettext 'Select oks(polygon) resource'}}'"
+                data-ngw-serialize="oks_polygon_resource"
+                title="{{gettext 'OKS Polygons'}}" style="width: 100%"></div>
+
+            <div data-dojo-attach-point="wOksLineResource"
+                data-dojo-type="ngw-resource/ResourceBox"
+                data-dojo-props="interface: 'IWritableFeatureLayer, dialogTitle: '{{gettext 'Select oks(line) resource'}}'"
+                data-ngw-serialize="oks_linear_resource"
+                title="{{gettext 'OKS Lines'}}" style="width: 100%"></div>
+
+            <div data-dojo-attach-point="wOksPointResource"
+                data-dojo-type="ngw-resource/ResourceBox"
+                data-dojo-props="interface: 'IWritableFeatureLayer, dialogTitle: '{{gettext 'Select oks(point) resource'}}'"
+                data-ngw-serialize="oks_point_resource"
+                title="{{gettext 'OKS Points'}}" style="width: 100%"></div>
+
+            <div data-dojo-attach-point="wBoundResource"
+                data-dojo-type="ngw-resource/ResourceBox"
+                data-dojo-props="interface: 'IWritableFeatureLayer, dialogTitle: '{{gettext 'Select bound resource'}}'"
+                data-ngw-serialize="bound_resource"
+                title="{{gettext 'Bounds'}}" style="width: 100%"></div>
+
+            <div data-dojo-attach-point="wOMSResource"
+                data-dojo-type="ngw-resource/ResourceBox"
+                data-dojo-props="interface: 'IWritableFeatureLayer, dialogTitle: '{{gettext 'Select oms resource'}}'"
+                data-ngw-serialize="oms_resource"
+                title="{{gettext 'OMS'}}" style="width: 100%"></div>
+
+            <div data-dojo-attach-point="wZoneResource"
+                data-dojo-type="ngw-resource/ResourceBox"
+                data-dojo-props="interface: 'IWritableFeatureLayer, dialogTitle: '{{gettext 'Select zone resource'}}'"
+                data-ngw-serialize="zone_resource"
+                title="{{gettext 'Zone'}}" style="width: 100%"></div>
+
+        </div>
+
+    </div>
+</div>
