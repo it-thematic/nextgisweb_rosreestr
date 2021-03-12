@@ -1,42 +1,30 @@
 # -*- coding: utf-8 -*-
 from __future__ import division, absolute_import, print_function, unicode_literals
-from collections import namedtuple
+from json import dumps
 
+from pyramid.response import Response
 from nextgisweb.env import env
-from nextgisweb.models import DBSession
-from nextgisweb.feature_layer import IFeatureLayer, IWritableFeatureLayer
-from nextgisweb.feature_layer.api import deserialize
-from nextgisweb.resource import DataScope, resource_factory, Resource
-from rrd_utils.utils import rrd_file_iterator_with_origin_name
+from nextgisweb.feature_layer import IFeatureLayer
+from nextgisweb.resource import DataScope, DataStructureScope, resource_factory, Resource
 
-PERM_WRITE = DataScope.write
-
-ImportParams = namedtuple('ImportParams', [
-    'file_upload_id',
-    'update_exist_resources',
-    'search_field'
-])
-
-CadastralResources = namedtuple('ImportResource', [
-    'parcel_resource_id',
-    'oks_polygon_resource_id',
-    'oks_linear_resource_id',
-    'oks_point_resource_id',
-    'bound_resource_id',
-    'oms_resource_id',
-    'zone_resource_id',
-])
+from .util import find_bind_attribure
 
 
-def rosreestr_import(request):
-    request.resource_permission(PERM_WRITE)
+def bind_get(resource, request):
+    request.resource_permission(DataStructureScope.read)
 
-    data = ImportParams(**request.json_body)
-    resources = CadastralResources(**request.json_body)
+    bind_attribute = find_bind_attribure(resource)
+    if bind_attribute is None:
+        return Response(status=404)
+    else:
+        return Response(
+            dumps(bind_attribute),
+            content_type='application/json',
+            charset='utf-8'
+        )
 
 
 def setup_pyramid(comp, config):
     config.add_route(
-        'rosreestr.import', '/api/resource/{id}/feature/import', factory=resource_factory
-    ) \
-        .add_view(rosreestr_import, route_name='rosreestr.export', context=Resource, request_method='POST')
+        'feature_layer.inspect', '/api/resource/{id}/bind', factory=resource_factory) \
+        .add_view(bind_get, context=IFeatureLayer, request_method='GET')
