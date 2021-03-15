@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: nextgisweb_rosreestr 1.0.0.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-25 16:11+0300\n"
-"PO-Revision-Date: 2021-03-12 16:51+0300\n"
+"PO-Revision-Date: 2021-03-15 17:15+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -22,82 +22,82 @@ msgstr ""
 
 #: amd/ngw-rosreestr/Widget.js:41 model.py:28 model.py:36
 msgid "Rosreestr"
-msgstr "Р”Р°РЅРЅС‹Рµ Р РѕСЃСЂРµРµСЃС‚СЂР°"
+msgstr "Данные Росреестра"
 
 #: model.py:30
 msgid "Write"
-msgstr "РћР±РЅРѕРІР»РµРЅРёРµ"
+msgstr "Обновление"
 
 #: model.py:31
 msgid "Read"
-msgstr "Р§С‚РµРЅРёРµ"
+msgstr "Чтение"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:6 model.py:73
 msgid "Document should be in ZIP-file"
-msgstr "Р”РѕРєСѓРјРµРЅС‚ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ ZIP-Р°СЂС…РёРІРѕРј"
+msgstr "Документ должен быть ZIP-архивом"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:6
 msgid "Select a document"
-msgstr "Р’С‹Р±РµСЂРёС‚Рµ РґРѕРєСѓРјРµРЅС‚"
+msgstr "Выберите документ"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:13
 msgid "Select parcel resource"
-msgstr "Р’С‹Р±РµСЂРёС‚Рµ СЂРµСЃСѓСЂСЃ \"РЈС‡Р°СЃС‚РѕРє\""
+msgstr "Выберите ресурс \"Участок\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:15
 msgid "Parcel"
-msgstr "РЈС‡Р°СЃС‚РѕРє"
+msgstr "Участок"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:21
 #: amd/ngw-rosreestr/template/Widget.hbs:33
 msgid "Bind attribute"
-msgstr "РђС‚СЂРёР±СѓС‚ СЃРІСЏР·С‹РІР°РЅРёСЏ"
+msgstr "Атрибут связывания"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:25
 msgid "Select oks(polygon) resource"
-msgstr "Р’С‹Р±РµСЂРёС‚Рµ СЂРµСЃСѓСЂСЃ \"РћРљРЎ(РїРѕР»РёРіРѕРЅ)\""
+msgstr "Выберите ресурс \"ОКС(полигон)\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:27
 msgid "OKS Polygon"
-msgstr "РћРљРЎ(РїРѕР»РёРіРѕРЅ)"
+msgstr "ОКС(полигон)"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:37
 msgid "Select oks(linear) resource"
-msgstr "Р’С‹Р±РµСЂРёС‚Рµ СЂРµСЃСѓСЂСЃ \"РћРљРЎ(Р»РёРЅРµР№РЅС‹Р№)\""
+msgstr "Выберите ресурс \"ОКС(линейный)\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:39
 msgid "OKS Linear"
-msgstr "РћРљРЎ(Р»РёРЅРµР№РЅС‹Р№)"
+msgstr "ОКС(линейный)"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:43
 msgid "Select oks(point) resource"
-msgstr "Р’С‹Р±РµСЂРёС‚Рµ СЂРµСЃСѓСЂСЃ \"РћРљРЎ(С‚РѕС‡РєР°)\""
+msgstr "Выберите ресурс \"ОКС(точка)\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:45
 msgid "OKS Point"
-msgstr "РћРљРЎ(С‚РѕС‡РєР°)"
+msgstr "ОКС(точка)"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:49
 msgid "Select bound resource"
-msgstr "Р’С‹Р±РµСЂРёС‚Рµ СЂРµСЃСѓСЂСЃ \"Р“СЂР°РЅРёС†Р°\""
+msgstr "Выберите ресурс \"Граница\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:51
 msgid "Bound"
-msgstr "Р“СЂР°РЅРёС†Р°"
+msgstr "Граница"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:55
 msgid "Select OMS resource"
-msgstr "Р’С‹Р±РµСЂРёС‚Рµ СЂРµСЃСѓСЂСЃ \"РџСѓРЅРєС‚ РћРњРЎ\""
+msgstr "Выберите ресурс \"Пункт ОМС\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:57
 msgid "OMS"
-msgstr "РџСѓРЅРєС‚ РћРњРЎ"
+msgstr "Пункт ОМС"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:61
 msgid "Select zone resource"
-msgstr "Р’С‹Р±РµСЂРёС‚Рµ СЂРµСЃСѓСЂСЃ \"РћС…СЂР°РЅРЅС‹Рµ Р·РѕРЅР°\""
+msgstr "Выберите ресурс \"Охранные зона\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:63
 msgid "Zone"
-msgstr "РћС…СЂР°РЅРЅР°СЏ Р·РѕРЅР°"
+msgstr "Охранная зона"
 
