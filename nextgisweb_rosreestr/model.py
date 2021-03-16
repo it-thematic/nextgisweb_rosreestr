@@ -240,22 +240,13 @@ class RosreestrSerializer(Serializer):
 
         # NOTE: Эта строка для отключения ускорения т.к. на Windows появляется ошибка при создании геометрии
         shapely.speedups.disable()
-        # Если не обновляем сведения, то загружаем новые
-        if not updated:
-            for v in ResourceByFeature.values():
-                resource = getattr(self.obj, v['resource'], None)
-                if resource is None:
-                    continue
-                resource.feature_delete_all()
-
         for xml_file in rrd_file_iterator(datafile):
             parser = ParserXML()
             for rrfeature in parser.parse(xml_file):
-                comp.logger.info('%s: %s', rrfeature.registration_number, rrfeature.address)
                 if rrfeature.geometry is None:
                     continue
-                feature_geometry = Geometry.from_wkt(rrfeature.geometry, srid=srs_from.id)
 
+                feature_geometry = Geometry.from_wkt(rrfeature.geometry, srid=srs_from.id)
                 geometry_type = feature_geometry.shape.type
                 if geometry_type.startswith('Multi'):
                     geometry_type = geometry_type[:5]
@@ -270,8 +261,10 @@ class RosreestrSerializer(Serializer):
                 resource = getattr(self.obj, resource_name, None)
                 if resource is None:
                     continue
+
                 if resource.srs.id != srs_from.id:
                     transformers.setdefault(resource_name, Transformer(srs_from.wkt, resource.srs.wkt))
+
                 ngwfeature_data = dict(
                     layer=resource,
                     geom=feature_geometry.wkt,
@@ -279,25 +272,33 @@ class RosreestrSerializer(Serializer):
                             for key in dir(rrfeature)
                             if not key.startswith('_') and not callable(getattr(rrfeature, key))}
                 )
+                query = resource.feature_query()
+                query.filter(*[(self.data.get(bind_attr_name), 'eq', rrfeature.registration_number)])
+                ngwfeature = None
+                for f in query():
+                    ngwfeature = f
+                    break
+                # Если обновляем сведения
                 if updated:
-                    query = resource.feature_query()
-                    query.filter(*[(self.data.get(bind_attr_name), 'eq', rrfeature.registration_number)])
-                    ngwfeature = None
-                    for f in query():
-                        ngwfeature = f
-                        break
+                    # и объект не существует, то создаём новый
                     if ngwfeature is None:
                         ngwfeature = Feature(layer=resource)
                         rr2ngw(ngwfeature, ngwfeature_data, transformer=transformers.get(resource_name, None))
                         ngwfeature_data['id'] = resource.feature_create(ngwfeature)
                     else:
+                        # А если существует, то обновляем сведения о нём
                         ngwfeature_data['id'] = ngwfeature.id
                         ngwfeature = Feature(layer=resource, id=ngwfeature.id)
                         rr2ngw(ngwfeature, ngwfeature_data, transformer=transformers.get(resource_name, None))
                         ngwfeature_data['id'] = resource.feature_put(ngwfeature)
                 else:
+                    # А если импортируем новые сведения, то добавляем только новые объекты
+                    if ngwfeature:
+                        continue
+
                     ngwfeature = Feature(layer=resource)
                     rr2ngw(ngwfeature, ngwfeature_data, transformer=transformers.get(resource_name, None))
                     ngwfeature_data['id'] = resource.feature_create(ngwfeature)
+
         # NOTE: А тут возвращаем всё обратно
         shapely.speedups.enable()
