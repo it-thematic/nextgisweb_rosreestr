@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nextgisweb_rosreestr 1.0.0.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-25 16:11+0300\n"
-"PO-Revision-Date: 2021-03-15 17:15+0300\n"
+"POT-Creation-Date: 2021-03-19 14:40+0300\n"
+"PO-Revision-Date: 2021-03-19 15:25+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -20,84 +20,131 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: amd/ngw-rosreestr/Widget.js:41 model.py:28 model.py:36
+#: amd/ngw-rosreestr/Widget.js:45 model.py:38 model.py:46
 msgid "Rosreestr"
-msgstr "Данные Росреестра"
+msgstr "Сведения Росреестра"
 
-#: model.py:30
+#: model.py:40
 msgid "Write"
 msgstr "Обновление"
 
-#: model.py:31
+#: model.py:41
 msgid "Read"
 msgstr "Чтение"
 
-#: amd/ngw-rosreestr/template/Widget.hbs:6 model.py:73
+#: amd/ngw-rosreestr/template/Widget.hbs:6 model.py:93
 msgid "Document should be in ZIP-file"
 msgstr "Документ должен быть ZIP-архивом"
+
+#: model.py:124
+msgid "Resource {} is not writable."
+msgstr "Ресурс {} не доступен для обновления"
+
+#: model.py:127
+msgid "Attribute {} is not allowed"
+msgstr "Атрибут {} не разрешен"
+
+#: view.py:33
+msgid "Import rosreestr data"
+msgstr "Импорт сведений Росреестра"
+
+#: view.py:102
+msgid "Import"
+msgstr "Импорт"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:6
 msgid "Select a document"
 msgstr "Выберите документ"
 
-#: amd/ngw-rosreestr/template/Widget.hbs:13
-msgid "Select parcel resource"
-msgstr "Выберите ресурс \"Участок\""
+#: amd/ngw-rosreestr/template/Widget.hbs:14
+msgid "Source data SRS"
+msgstr "СК исходных данных"
 
-#: amd/ngw-rosreestr/template/Widget.hbs:15
-msgid "Parcel"
-msgstr "Участок"
+#: amd/ngw-rosreestr/template/Widget.hbs:19
+msgid "Select parcel resource"
+msgstr "Выберите ресурс \"ЗУ\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:21
-#: amd/ngw-rosreestr/template/Widget.hbs:33
+msgid "Parcel"
+msgstr "Участки"
+
+#: amd/ngw-rosreestr/template/Widget.hbs:27
+#: amd/ngw-rosreestr/template/Widget.hbs:39
+#: amd/ngw-rosreestr/template/Widget.hbs:51
+#: amd/ngw-rosreestr/template/Widget.hbs:63
+#: amd/ngw-rosreestr/template/Widget.hbs:75
+#: amd/ngw-rosreestr/template/Widget.hbs:87
+#: amd/ngw-rosreestr/template/Widget.hbs:99
+#: amd/ngw-rosreestr/template/Widget.hbs:111
+#: amd/ngw-rosreestr/template/Widget.hbs:123
 msgid "Bind attribute"
 msgstr "Атрибут связывания"
 
-#: amd/ngw-rosreestr/template/Widget.hbs:25
+#: amd/ngw-rosreestr/template/Widget.hbs:31
 msgid "Select oks(polygon) resource"
-msgstr "Выберите ресурс \"ОКС(полигон)\""
+msgstr "Выберите ресурс \"ОКС(полигоны)\""
 
-#: amd/ngw-rosreestr/template/Widget.hbs:27
+#: amd/ngw-rosreestr/template/Widget.hbs:33
 msgid "OKS Polygon"
-msgstr "ОКС(полигон)"
-
-#: amd/ngw-rosreestr/template/Widget.hbs:37
-msgid "Select oks(linear) resource"
-msgstr "Выберите ресурс \"ОКС(линейный)\""
-
-#: amd/ngw-rosreestr/template/Widget.hbs:39
-msgid "OKS Linear"
-msgstr "ОКС(линейный)"
+msgstr "ОКС(полигоны)"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:43
-msgid "Select oks(point) resource"
-msgstr "Выберите ресурс \"ОКС(точка)\""
+msgid "Select oks(linear) resource"
+msgstr "Выберите ресурс \"ОКС(линии)\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:45
-msgid "OKS Point"
-msgstr "ОКС(точка)"
-
-#: amd/ngw-rosreestr/template/Widget.hbs:49
-msgid "Select bound resource"
-msgstr "Выберите ресурс \"Граница\""
-
-#: amd/ngw-rosreestr/template/Widget.hbs:51
-msgid "Bound"
-msgstr "Граница"
+msgid "OKS Linear"
+msgstr "ОСК(линии)"
 
 #: amd/ngw-rosreestr/template/Widget.hbs:55
-msgid "Select OMS resource"
-msgstr "Выберите ресурс \"Пункт ОМС\""
+msgid "Select oks(point) resource"
+msgstr "Выберите ресурс \"ОКС(точки)\""
 
 #: amd/ngw-rosreestr/template/Widget.hbs:57
+msgid "OKS Point"
+msgstr "ОКС(точки)"
+
+#: amd/ngw-rosreestr/template/Widget.hbs:67
+msgid "Select spatial data resource"
+msgstr "Выберите ресурс \"Кварталы\""
+
+#: amd/ngw-rosreestr/template/Widget.hbs:69
+msgid "Spatial data"
+msgstr "Кварталы"
+
+#: amd/ngw-rosreestr/template/Widget.hbs:79
+msgid "Select bound resource"
+msgstr "Выберите ресурс \"Границы(полигоны)\""
+
+#: amd/ngw-rosreestr/template/Widget.hbs:81
+msgid "Bound"
+msgstr "Границы(полигоны)"
+
+#: amd/ngw-rosreestr/template/Widget.hbs:91
+msgid "Select bound(linear) resource"
+msgstr "Выберите ресурс \"Границы(линии)\""
+
+#: amd/ngw-rosreestr/template/Widget.hbs:93
+msgid "Bound Linear"
+msgstr "Границы(линии)"
+
+#: amd/ngw-rosreestr/template/Widget.hbs:103
+msgid "Select OMS resource"
+msgstr "Выберите ресурс \"Точки ОМС\""
+
+#: amd/ngw-rosreestr/template/Widget.hbs:105
 msgid "OMS"
-msgstr "Пункт ОМС"
+msgstr "Точки ОМС"
 
-#: amd/ngw-rosreestr/template/Widget.hbs:61
+#: amd/ngw-rosreestr/template/Widget.hbs:115
 msgid "Select zone resource"
-msgstr "Выберите ресурс \"Охранные зона\""
+msgstr "Выберите ресурс \"ЗОУИТ\""
 
-#: amd/ngw-rosreestr/template/Widget.hbs:63
+#: amd/ngw-rosreestr/template/Widget.hbs:117
 msgid "Zone"
-msgstr "Охранная зона"
+msgstr "ЗОУИТ"
+
+#: amd/ngw-rosreestr/template/Widget.hbs:131
+msgid "Update exists data"
+msgstr "Обновить существующие данные"
 
