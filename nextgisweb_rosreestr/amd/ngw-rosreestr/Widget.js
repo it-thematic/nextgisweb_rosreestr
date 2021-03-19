@@ -52,6 +52,7 @@ define([
             this.wOKSPoint.on("update", lang.hitch(this, this.populateResource));
             this.wSpatialData.on("update", lang.hitch(this, this.populateResource));
             this.wBound.on("update", lang.hitch(this, this.populateResource));
+            this.wBoundLinear.on("update", lang.hitch(this, this.populateResource));
             this.wOMS.on("update", lang.hitch(this, this.populateResource));
             this.wZone.on("update", lang.hitch(this, this.populateResource));
         },

@@ -53,6 +53,7 @@ class Rosreestr(Resource):
     oks_point_resource_id = db.Column(db.ForeignKey(Resource.id), nullable=True)
     spatial_data_resource_id = db.Column(db.ForeignKey(Resource.id), nullable=True)
     bound_resource_id = db.Column(db.ForeignKey(Resource.id), nullable=True)
+    bound_linear_resource_id = db.Column(db.ForeignKey(Resource.id), nullable=True)
     oms_resource_id = db.Column(db.ForeignKey(Resource.id), nullable=True)
     zone_resource_id = db.Column(db.ForeignKey(Resource.id), nullable=True)
 
@@ -62,6 +63,7 @@ class Rosreestr(Resource):
     oks_point_resource = db.relationship(Resource, foreign_keys=oks_point_resource_id)
     spatial_data_resource = db.relationship(Resource, foreign_keys=spatial_data_resource_id)
     bound_resource = db.relationship(Resource, foreign_keys=bound_resource_id)
+    bound_linear_resource = db.relationship(Resource, foreign_keys=bound_resource_id)
     oms_resource = db.relationship(Resource, foreign_keys=oms_resource_id)
     zone_resource = db.relationship(Resource, foreign_keys=zone_resource_id)
 
@@ -132,6 +134,7 @@ ResourceType = namedtuple('TResourceType', [
     'oks_point_resource',
     'spatial_data_resource',
     'bound_resource',
+    'bound_linear_resource',
     'oms_resource',
     'zone_resource'
     ])
@@ -143,6 +146,7 @@ ResourceAttrType = namedtuple('TResourceAttrType', [
     'oks_point_bind_attr',
     'spatial_data_bind_attr',
     'bound_bind_attr',
+    'bound_linear_bind_attr',
     'oms_bind_attr',
     'zone_bind_attr'
     ])
@@ -188,6 +192,10 @@ ResourceByFeature = {
         resource='bound_resource',
         bind='bound_bind_attr'
     ),
+    ('Bound', 'LineString'): dict(
+        resource='bound_linear_resource',
+        bind='bound_linear_bind_attr'
+    ),
     ('OMSPoint', 'Point'): dict(
         resource='oms_resource',
         bind='oms_bind_attr'
@@ -210,9 +218,10 @@ class RosreestrSerializer(Serializer):
     oks_point_resource = SRR(**_mdargs)
     spatial_data_resource = SRR(**_mdargs)
     bound_resource = SRR(**_mdargs)
+    bound_linear_resource = SRR(**_mdargs)
     oms_resource = SRR(**_mdargs)
     zone_resource = SRR(**_mdargs)
-    # registration_number
+
     source = _source_attr(read=None, write=RosreestrScope.write)
     update = _update_attr(read=RosreestrScope.read, write=RosreestrScope.write)
 
@@ -222,6 +231,7 @@ class RosreestrSerializer(Serializer):
     oks_point_bind_attr = BindAttributeSerializer('oks_point_resource', **_rrargs)
     spatial_data_bind_attr = BindAttributeSerializer('spatial_data_resource', **_rrargs)
     bound_bind_attr = BindAttributeSerializer('bound_resource', **_rrargs)
+    bound_linear_bind_attr = BindAttributeSerializer('bound_linear_resource', **_rrargs)
     oms_bind_attr = BindAttributeSerializer('oms_resource', **_rrargs)
     zone_bind_attr = BindAttributeSerializer('zone_resource', **_rrargs)
 
@@ -243,17 +253,18 @@ class RosreestrSerializer(Serializer):
         for xml_file in rrd_file_iterator(datafile):
             parser = ParserXML()
             for rrfeature in parser.parse(xml_file):
+                comp.logger.debug('Type: %s, Number: %s', rrfeature.type, rrfeature.registration_number)
                 if rrfeature.geometry is None:
                     continue
 
                 feature_geometry = Geometry.from_wkt(rrfeature.geometry, srid=srs_from.id)
                 geometry_type = feature_geometry.shape.type
                 if geometry_type.startswith('Multi'):
-                    geometry_type = geometry_type[:5]
+                    geometry_type = geometry_type[5:]
 
                 feature_type = rrfeature.type
                 if feature_type.startswith('Sub'):
-                    feature_type = feature_type[:3]
+                    feature_type = feature_type[3:]
 
                 resource_name = ResourceByFeature[(feature_type, geometry_type)]['resource']
                 bind_attr_name = ResourceByFeature[(feature_type, geometry_type)]['bind']
