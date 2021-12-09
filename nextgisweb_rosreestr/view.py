@@ -51,7 +51,7 @@ def import_data_widget(request):
 
         parent = Resource.query().with_polymorphic('*') \
             .filter_by(id=parent_id).one()
-
+        owner_user = request.user
         obj = Resource.registry[clsid](parent=parent, owner_user=request.user)
 
     elif operation in ('update', 'delete'):
@@ -63,6 +63,7 @@ def import_data_widget(request):
 
         clsid = obj.cls
         parent = obj.parent
+        owner_user = obj.owner_user
 
     else:
         raise httpexceptions.HTTPBadRequest()
@@ -70,7 +71,8 @@ def import_data_widget(request):
     widget = RosreestrCompositeWidget(operation=operation, obj=obj, request=request)
     return dict(
         operation=operation, config=widget.config(), id=resid,
-        cls=clsid, parent=parent.id if parent else None)
+        cls=clsid, parent=parent.id if parent else None,
+        owner_user=owner_user.id)
 
 
 def setup_pyramid(comp, config):
