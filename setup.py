@@ -6,7 +6,7 @@ with io.open('VERSION', 'r') as fd:
 
 requires = (
     'nextgisweb>=4.0.0.dev5',
-    'rrd-xml-parser>=0.5.0'
+    'rrd-xml-parser>=1.0.0'
 )
 
 entry_points = {
