@@ -9,7 +9,6 @@ from nextgisweb import db
 from nextgisweb.env import env
 from nextgisweb.feature_layer import Feature, IWritableFeatureLayer
 from nextgisweb.feature_layer.api import deserialize as rr2ngw
-from nextgisweb.geojson import dumps
 from nextgisweb.lib.geometry import Geometry, Transformer
 from nextgisweb.models import declarative_base
 from nextgisweb.resource import (
@@ -110,10 +109,7 @@ class BindAttributeSerializer(SP):
 
     def getter(self, srlzr):
         _bind_attr = find_bind_attribure(getattr(srlzr.obj, self._resource_name, None))
-        if _bind_attr is None:
-            return
-        else:
-            return dumps(_bind_attr)
+        return _bind_attr
 
     def setter(self, srlzr, value):
         res = getattr(srlzr.obj, self._resource_name, None)

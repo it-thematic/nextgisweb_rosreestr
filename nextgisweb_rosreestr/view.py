@@ -101,7 +101,7 @@ def setup_pyramid(comp, config):
                 return
 
             yield Link(
-                'operation/30-import', _("Import"), self._url('rosreestr'), 'material:import', True)
+                'operation/30-import', _("Import"), self._url('rosreestr'), icon='material-download')
 
         def _url(self, cls):
             return lambda args: args.request.route_url(
